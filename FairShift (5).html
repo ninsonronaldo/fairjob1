@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FairShift</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{background:#fff;color:#111;font-size:18px;margin:0}
+button{min-height:56px}
+</style></head>
+<body><div id="root"></div>
+
+<!-- ===== ALL TEXT LIVES HERE (en, ta, hi) ===== -->
+<script>
+const T={
+en:{pick_lang:"Choose language",pick_role:"Who are you?",worker:"Worker",employer:"Employer",pick_wp:"Where do you work?",construction:"Construction",college:"College",hospital:"Hospital",attend:"Check In / Out",checkin:"Check In",checkout:"Check Out",since:"Since",salary:"My Salary",danger:"Report Danger",feedback:"Give Feedback",today:"Today",yesterday:"Yesterday",daysago:"days ago",hrs:"hours",worked:"worked",normal:"Normal hours",ot:"Overtime",rate:"Rate per hour",total:"Total pay",wrong:"Something is wrong",waiting:"Waiting",approved:"Approved",rejected:"Rejected",tip:"After 8 hours, overtime is paid double.",fire:"Fire",electric:"Electric",fall:"Fall",broken:"Broken tool",chem:"Chemical",other:"Other",photo:"Photo",voice:"Voice",submit:"Send",nomic:"Microphone not allowed",remind:"Remind me",remind_now:"Time is up! Take rest or check out.",keepopen:"Keep this page open.",back:"Back",pick_id:"Enter your 4-digit ID",enter_pin:"Enter your PIN",make_pin:"Make a new 4-digit PIN",wrongpin:"Wrong PIN",forgot:"Forgot PIN",forgot_msg:"Ask your employer to reset your PIN. Then log in with your ID and make a new PIN.",resetpin:"Reset PIN",getpaid:"Get paid by UPI",upi_ph:"name@bank",upi_bad:"UPI ID looks wrong (example: name@upi)",copy:"Copy",share:"WhatsApp",paymsg:"Please pay my salary:",paynow:"Pay now",noupi:"No UPI ID yet",pay_section:"Salary payments",novoice:"No voice for this language on this phone. Open phone Settings, Text-to-speech, and install it.",sent:"Sent",seen:"Seen",fixed:"Fixed",myreports:"My reports",pick_topic:"What is it about?",t_pay:"Pay",t_safety:"Safety",t_boss:"Supervisor",t_rest:"Water & rest",how:"How do you feel?",good:"Good",bad:"Bad",anon:"Anonymous. No name is saved.",thanks:"Thank you!",ok:"OK",present:"Present today",ottotal:"Overtime hours",openSafety:"Open safety reports",openPay:"Open pay disputes",fatigue:"Fatigue alerts",f10:"Over 10 hours today",f7:"7 days in a row",nofat:"No alerts",safety:"Safety reports",disputes:"Pay disputes",approve:"Approve",reject:"Reject",fbsum:"Feedback issues",hide3:"Shown only when 3 or more workers agree.",none:"Nothing yet",me:"Me",shift_construction_1:"Day shift",shift_construction_2:"Night shift",shift_college_1:"Class hours",shift_college_2:"Lab hours",shift_hospital_1:"Day duty",shift_hospital_2:"Night duty"},
+ta:{pick_lang:"மொழியைத் தேர்ந்தெடுங்கள்",pick_role:"நீங்கள் யார்?",worker:"தொழிலாளி",employer:"முதலாளி",pick_wp:"எங்கே வேலை செய்கிறீர்கள்?",construction:"கட்டுமானம்",college:"கல்லூரி",hospital:"மருத்துவமனை",attend:"வருகை / புறப்பாடு",checkin:"வேலை தொடங்கு",checkout:"வேலை முடி",since:"முதல்",salary:"என் சம்பளம்",danger:"ஆபத்து சொல்",feedback:"கருத்து சொல்",today:"இன்று",yesterday:"நேற்று",daysago:"நாட்களுக்கு முன்",hrs:"மணி",worked:"வேலை",normal:"சாதாரண நேரம்",ot:"கூடுதல் நேரம்",rate:"மணி கூலி",total:"மொத்த சம்பளம்",wrong:"தவறு உள்ளது",waiting:"காத்திருக்கிறது",approved:"ஏற்றது",rejected:"மறுத்தது",tip:"8 மணிக்குப் பிறகு கூடுதல் நேரத்திற்கு இரட்டிப்பு சம்பளம்.",fire:"தீ",electric:"மின்சாரம்",fall:"கீழே விழுதல்",broken:"உடைந்த கருவி",chem:"ரசாயனம்",other:"மற்றவை",photo:"படம்",voice:"குரல்",submit:"அனுப்பு",nomic:"மைக் அனுமதி இல்லை",remind:"நினைவூட்டு",remind_now:"நேரம் ஆகிவிட்டது! ஓய்வு எடுங்கள் அல்லது வேலை முடியுங்கள்.",keepopen:"இந்தப் பக்கத்தைத் திறந்து வையுங்கள்.",back:"பின்",pick_id:"உங்கள் 4 இலக்க ஐடி எண்ணை உள்ளிடுங்கள்",enter_pin:"உங்கள் PIN உள்ளிடுங்கள்",make_pin:"புதிய 4 இலக்க PIN உருவாக்குங்கள்",wrongpin:"தவறான PIN",forgot:"PIN மறந்துவிட்டதா",forgot_msg:"உங்கள் முதலாளியிடம் PIN மாற்றச் சொல்லுங்கள். பிறகு ஐடி மூலம் உள்நுழைந்து புதிய PIN உருவாக்குங்கள்.",resetpin:"PIN மாற்று",getpaid:"UPI மூலம் சம்பளம் பெற",upi_ph:"name@bank",upi_bad:"UPI ஐடி தவறு (எ.கா: name@upi)",copy:"நகலெடு",share:"WhatsApp",paymsg:"என் சம்பளத்தை செலுத்துங்கள்:",paynow:"இப்போது செலுத்து",noupi:"UPI ஐடி இல்லை",pay_section:"சம்பள பணம்",novoice:"இந்த ஃபோனில் இந்த மொழிக்கான குரல் இல்லை. Settings > Text-to-speech சென்று நிறுவுங்கள்.",sent:"அனுப்பியது",seen:"பார்த்தது",fixed:"சரி செய்தது",myreports:"என் புகார்கள்",pick_topic:"எதைப் பற்றி?",t_pay:"சம்பளம்",t_safety:"பாதுகாப்பு",t_boss:"மேற்பார்வையாளர்",t_rest:"தண்ணீர் & ஓய்வு",how:"எப்படி உணர்கிறீர்கள்?",good:"நல்லது",bad:"மோசம்",anon:"பெயர் சேமிக்கப்படாது.",thanks:"நன்றி!",ok:"சரி",present:"இன்று வந்தவர்கள்",ottotal:"கூடுதல் மணி",openSafety:"திறந்த ஆபத்து புகார்கள்",openPay:"திறந்த சம்பள புகார்கள்",fatigue:"சோர்வு எச்சரிக்கை",f10:"இன்று 10 மணிக்கு மேல்",f7:"தொடர்ந்து 7 நாட்கள்",nofat:"எச்சரிக்கை இல்லை",safety:"ஆபத்து புகார்கள்",disputes:"சம்பள புகார்கள்",approve:"ஏற்கவும்",reject:"மறுக்கவும்",fbsum:"கருத்து சிக்கல்கள்",hide3:"3 அல்லது அதற்கு மேல் தொழிலாளர்கள் சொன்னால் மட்டும் காட்டும்.",none:"இன்னும் இல்லை",me:"நான்",shift_construction_1:"பகல் ஷிஃப்ட்",shift_construction_2:"இரவு ஷிஃப்ட்",shift_college_1:"வகுப்பு நேரம்",shift_college_2:"ஆய்வக நேரம்",shift_hospital_1:"பகல் பணி",shift_hospital_2:"இரவு பணி"},
+hi:{pick_lang:"भाषा चुनें",pick_role:"आप कौन हैं?",worker:"कामगार",employer:"मालिक",pick_wp:"आप कहाँ काम करते हैं?",construction:"निर्माण",college:"कॉलेज",hospital:"अस्पताल",attend:"आना / जाना",checkin:"काम शुरू",checkout:"काम खत्म",since:"से",salary:"मेरी तनख्वाह",danger:"खतरा बताएं",feedback:"राय दें",today:"आज",yesterday:"कल",daysago:"दिन पहले",hrs:"घंटे",worked:"काम",normal:"सामान्य घंटे",ot:"ओवरटाइम",rate:"प्रति घंटा दर",total:"कुल वेतन",wrong:"कुछ गलत है",waiting:"इंतज़ार",approved:"मंजूर",rejected:"नामंजूर",tip:"8 घंटे के बाद ओवरटाइम का दोगुना वेतन मिलता है।",fire:"आग",electric:"बिजली",fall:"गिरना",broken:"टूटा औज़ार",chem:"रसायन",other:"अन्य",photo:"फोटो",voice:"आवाज़",submit:"भेजें",nomic:"माइक की अनुमति नहीं",remind:"याद दिलाएं",remind_now:"समय हो गया! आराम करें या काम खत्म करें।",keepopen:"यह पेज खुला रखें।",back:"वापस",pick_id:"अपना 4 अंकों का आईडी डालें",enter_pin:"अपना PIN डालें",make_pin:"नया 4 अंकों का PIN बनाएं",wrongpin:"गलत PIN",forgot:"PIN भूल गए",forgot_msg:"अपने मालिक से PIN रीसेट करवाएं। फिर आईडी से लॉगिन करके नया PIN बनाएं।",resetpin:"PIN रीसेट",getpaid:"UPI से वेतन पाएं",upi_ph:"name@bank",upi_bad:"UPI आईडी गलत है (जैसे: name@upi)",copy:"कॉपी",share:"WhatsApp",paymsg:"कृपया मेरा वेतन दें:",paynow:"अभी भुगतान",noupi:"UPI आईडी नहीं",pay_section:"वेतन भुगतान",novoice:"इस फ़ोन में इस भाषा की आवाज़ नहीं है। Settings > Text-to-speech में जाकर इंस्टॉल करें।",sent:"भेजा",seen:"देखा",fixed:"ठीक हुआ",myreports:"मेरी रिपोर्ट",pick_topic:"किस बारे में?",t_pay:"वेतन",t_safety:"सुरक्षा",t_boss:"सुपरवाइज़र",t_rest:"पानी और आराम",how:"आप कैसा महसूस करते हैं?",good:"अच्छा",bad:"बुरा",anon:"गुमनाम। नाम सेव नहीं होता।",thanks:"धन्यवाद!",ok:"ठीक है",present:"आज उपस्थित",ottotal:"ओवरटाइम घंटे",openSafety:"खुली सुरक्षा रिपोर्ट",openPay:"खुले वेतन विवाद",fatigue:"थकान चेतावनी",f10:"आज 10 घंटे से ज़्यादा",f7:"लगातार 7 दिन",nofat:"कोई चेतावनी नहीं",safety:"सुरक्षा रिपोर्ट",disputes:"वेतन विवाद",approve:"मंजूर",reject:"नामंजूर",fbsum:"राय की समस्याएं",hide3:"3 या ज़्यादा कामगार कहें तभी दिखता है।",none:"अभी कुछ नहीं",me:"मैं",shift_construction_1:"दिन की शिफ्ट",shift_construction_2:"रात की शिफ्ट",shift_college_1:"कक्षा का समय",shift_college_2:"लैब का समय",shift_hospital_1:"दिन की ड्यूटी",shift_hospital_2:"रात की ड्यूटी"}
+};
+</script>
+
+<script>
+const {useState,useEffect,useContext}=React;
+const html=htm.bind(React.createElement);
+const KEY="fairshift_v1", RATE=100, OT_TIMES=2;   // ₹ per hour; overtime paid 2x
+const WI={construction:"🏗️",college:"🎓",hospital:"🏥"};
+const HZ={fire:"🔥",electric:"⚡",fall:"🪜",broken:"🔧",chem:"🧪",other:"❓"};
+const WH={construction:["fall","electric","fire","broken"],college:["fire","electric","fall","other"],hospital:["fire","electric","chem","broken"]};
+const TOPICS={pay:"💰",safety:"🦺",boss:"🧑‍💼",rest:"💧"};
+const f=n=>(Math.round(n*10)/10).toFixed(1);
+const hrs=m=>m.todayH+(m.in?(Date.now()-m.in)/36e5:0);
+const dayLabel=(t,ago)=>ago==0?t("today"):ago==1?t("yesterday"):ago+" "+t("daysago");
+const pay=u=>Math.round([...u.days,{h:hrs(u)}].reduce((a,d)=>a+Math.min(d.h,8)*RATE+Math.max(0,d.h-8)*RATE*OT_TIMES,0));
+const validUpi=v=>/^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{2,}$/.test(v);
+const upiLink=(upi,id,amt)=>"upi://pay?pa="+encodeURIComponent(upi)+"&pn="+encodeURIComponent("ID "+id)+"&am="+amt+"&cu=INR&tn="+encodeURIComponent("FairShift salary");
+
+// ---- demo data + storage ----
+const seed=()=>({lang:"en",role:null,wp:null,
+ me:{in:null,todayH:0,days:[{ago:3,h:8.5},{ago:2,h:10},{ago:1,h:7.5}]},
+ workers:[{name:"Ravi",days:[8,8,0,8,9,8,8]},{name:"Meena",days:[9,9,9,9,9,9,11]},{name:"Arjun",days:[8,8,8,8,8,8,8]},{name:"Lakshmi",days:[7,8,0,8,8,8,0]},{name:"Imran",days:[10,9,8,9,8,9,9]}],
+ reports:[{id:1,k:"electric",st:0},{id:2,k:"broken",st:1}],
+ disputes:[{id:1,who:"Ravi",ago:2,h:10,st:"open"}],
+ feedback:[...Array(4).fill({tp:"safety",m:"bad"}),...Array(2).fill({tp:"pay",m:"bad"}),{tp:"boss",m:"bad"},{tp:"rest",m:"good"},{tp:"boss",m:"good"}]});
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){return seed()}};
+
+// ---- read aloud ----
+const VOICE={en:"en-IN",ta:"ta-IN",hi:"hi-IN"};
+try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices()}catch(e){}
+function pickVoice(lang){const vs=speechSynthesis.getVoices();return vs.find(v=>v.lang.replace("_","-").toLowerCase()==VOICE[lang].toLowerCase())||vs.find(v=>v.lang.toLowerCase().startsWith(lang))||null}
+function say(text,lang){
+ try{
+  const synth=speechSynthesis;synth.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang=VOICE[lang];u.rate=0.9;
+  const v=pickVoice(lang);
+  if(v)u.voice=v;else if(lang!="en"&&synth.getVoices().length>0){alert(T[lang].novoice)}
+  setTimeout(()=>synth.speak(u),100);
+ }catch(e){}
+}
+
+const Ctx=React.createContext();
+const useT=()=>{const c=useContext(Ctx);return k=>T[c.s.lang][k]||k};
+
+// ---- small building blocks ----
+const Say=({text})=>{const {s}=useContext(Ctx);return html`<button aria-label="Read aloud" onClick=${()=>say(text,s.lang)} className="shrink-0 w-14 h-14 rounded-full bg-green-100 text-3xl">🔊</button>`};
+const Big=({icon,label,onClick,outline})=>html`<button onClick=${onClick} className=${"w-full min-h-[8rem] rounded-3xl flex flex-col items-center justify-center gap-1 p-3 text-xl font-bold active:scale-95 "+(outline?"bg-white text-green-800 border-4 border-green-700":"bg-green-700 text-white")}><span className="text-5xl leading-none">${icon}</span><span>${label}</span></button>`;
+const Title=({text})=>html`<div className="flex items-center gap-3 my-4"><h1 className="text-2xl font-extrabold text-green-800 flex-1">${text}</h1><${Say} text=${text}/></div>`;
+const Dots=({st})=>{const t=useT();return html`<div className="flex items-center gap-1">${[0,1,2].map(i=>html`<span key=${i} className=${"w-5 h-5 rounded-full "+(i<=st?["bg-red-600","bg-amber-500","bg-green-600"][st]:"bg-gray-300")}></span>`)}<span className="ml-2 font-bold">${t(["sent","seen","fixed"][st])}</span></div>`};
+const Chip=({st})=>{const t=useT();const m={open:["⏳",t("waiting")],ok:["✅",t("approved")],no:["❌",t("rejected")]}[st];return html`<span className="font-bold text-lg">${m[0]} ${m[1]}</span>`};
+
+// ---- first screen: language → role → workplace ----
+function Setup({step,setStep,go}){
+ const {s,up}=useContext(Ctx), t=useT();
+ if(step==3)return html`<${Pad} go=${go}/>`;
+ const title=[t("pick_lang"),t("pick_role"),t("pick_wp")][step];
+ const items=step==0?[["த","தமிழ்","ta"],["हि","हिन्दी","hi"],["A","English","en"]].map(([i,n,l])=>[i,n,()=>{up(d=>{d.lang=l});setStep(1)}])
+  :step==1?[["👷",t("worker"),()=>{up(d=>{d.role="worker"});setStep(2)}],["🏢",t("employer"),()=>{up(d=>{d.role="employer"});setStep(2)}]]
+  :["construction","college","hospital"].map(w=>[WI[w],t(w),()=>{up(d=>{d.wp=w});s.role=="employer"?go("employer"):setStep(3)}]);
+ return html`<div><${Title} text=${title}/><div className="grid gap-4">${items.map(([i,l,fn])=>html`<${Big} key=${l} icon=${i} label=${l} onClick=${fn}/>`)}</div></div>`;
+}
+
+// ---- worker: home ----
+function Home({go}){
+ const {s}=useContext(Ctx), t=useT();
+ const line=`${t("today")}: ${f(hrs(s.me))} ${t("hrs")} ${t("worked")}`;
+ return html`<div>
+  <div className="text-xl font-bold text-green-800 mt-3">👤 ${s.uid}</div><div className="flex items-center gap-3 my-4 p-4 rounded-3xl bg-green-100"><div className="flex-1 text-2xl font-extrabold text-green-900">${line}</div><${Say} text=${line}/></div>
+  <div className="grid grid-cols-2 gap-4">
+   <${Big} icon="⏰" label=${t("attend")} onClick=${()=>go("attend")}/>
+   <${Big} icon="💰" label=${t("salary")} onClick=${()=>go("salary")}/>
+   <${Big} icon="⚠️" label=${t("danger")} onClick=${()=>go("danger")}/>
+   <${Big} icon="🗣️" label=${t("feedback")} onClick=${()=>go("feedback")}/>
+  </div>
+  <div className="flex items-center gap-3 mt-5"><p className="flex-1 text-lg">💡 ${t("tip")}</p><${Say} text=${t("tip")}/></div>
+ </div>`;
+}
+
+// ---- worker: check in / out ----
+function Attend(){
+ const {s,up}=useContext(Ctx), t=useT();
+ const [,tick]=useState(0); useEffect(()=>{const i=setInterval(()=>tick(x=>x+1),20000);return()=>clearInterval(i)},[]);
+ const m=s.me, shift=t("shift_"+s.wp+"_"+(new Date().getHours()<14?1:2));
+ const toggle=()=>up(d=>{if(d.me.in){d.me.todayH+=(Date.now()-d.me.in)/36e5;d.me.in=null}else d.me.in=Date.now()});
+ const line=`${t("today")}: ${f(hrs(m))} ${t("hrs")} ${t("worked")}`;
+ return html`<div className="text-center">
+  <div className="flex items-center gap-3 my-4"><div className="flex-1 text-xl font-bold text-green-800">${WI[s.wp]} ${shift}</div><${Say} text=${line}/></div>
+  <button onClick=${toggle} className=${"w-full min-h-[16rem] rounded-[3rem] flex flex-col items-center justify-center gap-2 text-3xl font-extrabold active:scale-95 "+(m.in?"bg-white text-green-800 border-8 border-green-700":"bg-green-700 text-white")}><span className="text-8xl">${m.in?"🏁":"⏰"}</span>${m.in?t("checkout"):t("checkin")}</button>
+  ${m.in?html`<p className="mt-4 text-xl">${t("since")} ${new Date(m.in).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</p>`:null}
+  <p className="mt-4 text-3xl font-extrabold">${line}</p>
+  <${Remind}/>
+ </div>`;
+}
+
+// ---- worker: salary ----
+function Salary(){
+ const {s,up}=useContext(Ctx), t=useT();
+ const days=[...s.me.days,{ago:0,h:hrs(s.me)}];
+ const normal=days.reduce((a,d)=>a+Math.min(d.h,8),0), ot=days.reduce((a,d)=>a+Math.max(0,d.h-8),0);
+ const total=Math.round(normal*RATE+ot*RATE*OT_TIMES);
+ const line=`${t("normal")} ${f(normal)}. ${t("ot")} ${f(ot)}. ${t("rate")} ₹${RATE}. ${t("total")} ₹${total}`;
+ const cards=[["⏱️",t("normal"),f(normal)],["🌙",t("ot"),f(ot)],["💵",t("rate"),"₹"+RATE],["💰",t("total"),"₹"+total]];
+ const dispute=d=>up(x=>{x.disputes.push({id:Date.now(),who:x.uid,ago:d.ago,h:d.h,st:"open"})});
+ return html`<div>
+  <div className="flex items-center gap-3 my-4"><div className="grid grid-cols-2 gap-3 flex-1">${cards.map(([i,l,v])=>html`<div key=${l} className="rounded-3xl bg-green-100 p-3 text-center"><div className="text-3xl">${i}</div><div className="text-base font-bold">${l}</div><div className="text-3xl font-extrabold text-green-900">${v}</div></div>`)}</div></div>
+  <div className="flex justify-end mb-2"><${Say} text=${line}/></div>
+  <${GetPaid} total=${total}/>
+  <div className="grid gap-3">${days.slice().reverse().map(d=>{const dp=s.disputes.find(x=>x.who==s.uid&&x.ago==d.ago);return html`<div key=${d.ago} className="rounded-3xl border-4 border-green-700 p-3">
+    <div className="flex justify-between text-xl font-extrabold"><span>${dayLabel(t,d.ago)}</span><span>${f(d.h)} ${t("hrs")}</span></div>
+    <div className="mt-2">${dp?html`<${Chip} st=${dp.st}/>`:html`<button onClick=${()=>dispute(d)} className="w-full rounded-2xl bg-white border-4 border-red-600 text-red-700 text-lg font-bold">❗ ${t("wrong")}</button>`}</div></div>`})}</div>
+ </div>`;
+}
+
+// ---- worker: report danger ----
+function Danger({go}){
+ const {s,up}=useContext(Ctx), t=useT();
+ const [k,setK]=useState(null),[photo,setPhoto]=useState(false),[voice,setVoice]=useState(false),[rec,setRec]=useState(null);
+ const mic=async()=>{
+  if(rec){rec.stop();rec.stream.getTracks().forEach(x=>x.stop());setRec(null);setVoice(true);return}
+  try{const st=await navigator.mediaDevices.getUserMedia({audio:true});const r=new MediaRecorder(st);r.start();setRec(r)}catch(e){alert(t("nomic"))}
+ };
+ const send=()=>{up(d=>{d.reports.push({id:Date.now(),k,st:0,photo,voice})});setK(null);setPhoto(false);setVoice(false)};
+ if(!k) return html`<div><${Title} text=${t("danger")}/>
+  <div className="grid grid-cols-2 gap-4">${WH[s.wp].map(h=>html`<${Big} key=${h} icon=${HZ[h]} label=${t(h)} onClick=${()=>setK(h)}/>`)}</div>
+  <h2 className="text-xl font-extrabold text-green-800 mt-6 mb-2">${t("myreports")}</h2>
+  <div className="grid gap-3">${s.reports.slice().reverse().slice(0,4).map(r=>html`<div key=${r.id} className="rounded-3xl border-4 border-green-700 p-3 flex items-center justify-between gap-2"><span className="text-xl font-bold">${HZ[r.k]} ${t(r.k)}</span><${Dots} st=${r.st}/></div>`)}</div></div>`;
+ return html`<div><div className="text-center text-7xl my-4">${HZ[k]}</div><div className="text-center text-2xl font-extrabold mb-4">${t(k)}</div>
+  <div className="grid gap-4">
+   <label className=${"w-full min-h-[6rem] rounded-3xl flex items-center justify-center gap-3 text-2xl font-bold border-4 border-green-700 "+(photo?"bg-green-100":"bg-white text-green-800")}><span className="text-5xl">${photo?"✅":"📷"}</span>${t("photo")}<input type="file" accept="image/*" capture="environment" className="hidden" onChange=${()=>setPhoto(true)}/></label>
+   <button onClick=${mic} className=${"w-full min-h-[6rem] rounded-3xl flex items-center justify-center gap-3 text-2xl font-bold border-4 border-green-700 "+(voice?"bg-green-100":"bg-white text-green-800")}><span className="text-5xl">${rec?"🔴":voice?"✅":"🎤"}</span>${t("voice")}</button>
+   <${Big} icon="📤" label=${t("submit")} onClick=${send}/>
+  </div></div>`;
+}
+
+// ---- worker: anonymous feedback ----
+function Feedback({go}){
+ const {up}=useContext(Ctx), t=useT();
+ const [tp,setTp]=useState(null),[done,setDone]=useState(false);
+ if(done) return html`<div className="text-center"><div className="text-8xl mt-8">🙏</div><${Title} text=${t("thanks")}/><${Big} icon="✅" label=${t("ok")} onClick=${()=>go("home")}/></div>`;
+ if(!tp) return html`<div><${Title} text=${t("pick_topic")}/><div className="grid grid-cols-2 gap-4">${Object.keys(TOPICS).map(k=>html`<${Big} key=${k} icon=${TOPICS[k]} label=${t("t_"+k)} onClick=${()=>setTp(k)}/>`)}</div><p className="mt-4 text-lg">🔒 ${t("anon")}</p></div>`;
+ const vote=m=>{up(d=>{d.feedback.push({tp,m})});setDone(true)};
+ return html`<div><${Title} text=${t("how")}/><div className="text-center text-xl font-bold mb-3">${TOPICS[tp]} ${t("t_"+tp)}</div>
+  <div className="grid grid-cols-2 gap-4"><${Big} icon="😊" label=${t("good")} onClick=${()=>vote("good")}/><${Big} icon="😞" label=${t("bad")} outline=${true} onClick=${()=>vote("bad")}/></div><p className="mt-4 text-lg">🔒 ${t("anon")}</p></div>`;
+}
+
+// ---- employer dashboard ----
+function Employer(){
+ const {s,up}=useContext(Ctx), t=useT();
+ const w=s.workers, us=Object.values(s.users||{}), mePresent=us.filter(u=>u.in||u.todayH>0).length;
+ const present=w.filter(x=>x.days[6]>0).length+mePresent;
+ const ot=w.reduce((a,x)=>a+Math.max(0,x.days[6]-8),0)+us.reduce((a,u)=>a+Math.max(0,hrs(u)-8),0);
+ const openS=s.reports.filter(r=>r.st<2).length, openP=s.disputes.filter(x=>x.st=="open").length;
+ const tired=w.map(x=>x.days[6]>10?[x.name,"f10"]:x.days.every(d=>d>0)?[x.name,"f7"]:null).filter(Boolean);
+ const issues=Object.keys(TOPICS).map(k=>[k,s.feedback.filter(x=>x.tp==k&&x.m=="bad").length]).filter(x=>x[1]>=3);
+ const cards=[["👷",t("present"),present],["⏱️",t("ottotal"),f(ot)],["⚠️",t("openSafety"),openS],["💰",t("openPay"),openP]];
+ const Sec=({text,children})=>html`<div className="mt-6"><h2 className="text-xl font-extrabold text-green-800 mb-2">${text}</h2><div className="grid gap-3">${children}</div></div>`;
+ const row="rounded-3xl border-4 border-green-700 p-3";
+ const small=(on)=>"flex-1 rounded-2xl text-lg font-bold "+(on?"bg-gray-200 text-gray-500":"bg-green-700 text-white");
+ return html`<div>
+  <div className="grid grid-cols-2 gap-3 mt-4">${cards.map(([i,l,v])=>html`<div key=${l} className="rounded-3xl bg-green-100 p-3 text-center"><div className="text-3xl">${i}</div><div className="text-4xl font-extrabold text-green-900">${v}</div><div className="text-base font-bold">${l}</div></div>`)}</div>
+  <${Sec} text=${"😓 "+t("fatigue")}>${tired.length?tired.map(([n,r])=>html`<div key=${n} className=${row+" flex justify-between text-lg font-bold"}><span>${n}</span><span className="text-red-700">${t(r)}</span></div>`):html`<div className=${row}>${t("nofat")}</div>`}<//>
+  <${Sec} text=${"⚠️ "+t("safety")}>${s.reports.slice().reverse().map(r=>html`<div key=${r.id} className=${row}>
+    <div className="flex justify-between items-center"><span className="text-xl font-bold">${HZ[r.k]} ${t(r.k)} ${r.photo?"📷":""}${r.voice?"🎤":""}</span><${Dots} st=${r.st}/></div>
+    <div className="flex gap-2 mt-2"><button disabled=${r.st>=1} className=${small(r.st>=1)} onClick=${()=>up(d=>{d.reports.find(x=>x.id==r.id).st=1})}>👀 ${t("seen")}</button><button disabled=${r.st>=2} className=${small(r.st>=2)} onClick=${()=>up(d=>{d.reports.find(x=>x.id==r.id).st=2})}>✅ ${t("fixed")}</button></div></div>`)}<//>
+  <${Sec} text=${"💰 "+t("disputes")}>${s.disputes.length?s.disputes.slice().reverse().map(x=>html`<div key=${x.id} className=${row}>
+    <div className="text-lg font-bold">${/^\d+$/.test(x.who)?"ID "+x.who:x.who} · ${dayLabel(t,x.ago)} · ${f(x.h)} ${t("hrs")}</div>
+    <div className="mt-2">${x.st=="open"?html`<div className="flex gap-2"><button className=${small(false)} onClick=${()=>up(d=>{d.disputes.find(y=>y.id==x.id).st="ok"})}>✅ ${t("approve")}</button><button className="flex-1 rounded-2xl text-lg font-bold bg-white border-4 border-red-600 text-red-700" onClick=${()=>up(d=>{d.disputes.find(y=>y.id==x.id).st="no"})}>❌ ${t("reject")}</button></div>`:html`<${Chip} st=${x.st}/>`}</div></div>`):html`<div className=${row}>${t("none")}</div>`}<//>
+  <${Sec} text=${"🗣️ "+t("fbsum")}>${issues.length?issues.map(([k,n])=>html`<div key=${k} className=${row+" flex justify-between text-xl font-bold"}><span>${TOPICS[k]} ${t("t_"+k)}</span><span className="text-red-700">😞 ${n}</span></div>`):html`<div className=${row}>${t("none")}</div>`}<p className="text-base">🔒 ${t("hide3")}</p><//>
+  <${Sec} text=${"💳 "+t("pay_section")}>${Object.keys(s.users||{}).length?Object.entries(s.users).map(([id,u])=>html`<div key=${id} className=${row}><div className="flex justify-between text-xl font-bold"><span>👤 ${id}</span><span>₹${pay(u)}</span></div><div className="flex gap-2 mt-2">${u.upi&&pay(u)>0?html`<a href=${upiLink(u.upi,id,pay(u))} className="flex-1 min-h-[56px] flex items-center justify-center rounded-2xl bg-green-700 text-white text-lg font-bold">💳 ${t("paynow")}</a>`:html`<span className="flex-1 text-lg">${t("noupi")}</span>`}<button className="flex-1 rounded-2xl bg-white border-4 border-green-700 text-green-800 text-lg font-bold" onClick=${()=>up(d=>{d.users[id].pin=null;if(d.uid==id)d.me.pin=null})}>🔑 ${t("resetpin")}</button></div></div>`):html`<div className=${row}>${t("none")}</div>`}<//>
+ </div>`;
+}
+
+// ---- worker: UPI payment link (the employer opens it in any UPI app) ----
+function GetPaid({total}){
+ const {s,up}=useContext(Ctx), t=useT();
+ const [txt,setTxt]=useState(s.me.upi||""),[copied,setCopied]=useState(false);
+ const ok=validUpi(txt), link=ok&&total>0?upiLink(txt,s.uid,total):"";
+ const save=v=>{setTxt(v);if(validUpi(v))up(d=>{d.me.upi=v})};
+ const copy=()=>{try{navigator.clipboard.writeText(link);setCopied(true)}catch(e){}};
+ const btn="min-h-[56px] flex items-center justify-center rounded-2xl text-lg font-bold border-4 border-green-700 ";
+ return html`<div className="my-3 rounded-3xl border-4 border-green-700 p-3">
+  <div className="text-xl font-bold mb-2">💳 ${t("getpaid")}</div>
+  <input value=${txt} onChange=${e=>save(e.target.value.trim())} placeholder=${t("upi_ph")} autoCapitalize="none" className="w-full rounded-2xl border-4 border-gray-400 p-3 text-xl"/>
+  ${txt&&!ok?html`<p className="mt-2 text-lg font-bold text-red-700">❌ ${t("upi_bad")}</p>`:null}
+  ${link?html`<p className="break-all text-base my-2">${link}</p><div className="grid grid-cols-2 gap-2"><button onClick=${copy} className=${btn+(copied?"bg-green-100":"bg-white text-green-800")}>${copied?"✅":"📋"} ${t("copy")}</button><a target="_blank" rel="noopener" href=${"https://wa.me/?text="+encodeURIComponent(t("paymsg")+" ₹"+total+" "+link)} className=${btn+"bg-green-700 text-white"}>💬 ${t("share")}</a></div>`:null}</div>`;
+}
+
+// ---- worker login: ID, then PIN ----
+function Pad({go}){
+ const {up}=useContext(Ctx), t=useT();
+ const {s}=useContext(Ctx);
+ const [v,setV]=useState(""),[stage,setStage]=useState("id"),[uid,setUid]=useState(""),[bad,setBad]=useState(false),[forgot,setForgot]=useState(false);
+ const add=n=>{if(v.length<4){setV(v+n);setBad(false)}};
+ const login=(id,pin)=>{up(d=>{d.users=d.users||{};if(d.uid)d.users[d.uid]=d.me;d.me=d.users[id]||{in:null,todayH:0,days:[]};if(pin)d.me.pin=pin;d.uid=id});go("home")};
+ const ok=()=>{if(v.length<4)return;
+  if(stage=="id"){const u=(s.users||{})[v];setUid(v);setV("");setStage(u&&u.pin?"pin":"new");return}
+  if(stage=="pin"){if(s.users[uid].pin==v)login(uid);else{setV("");setBad(true)}return}
+  login(uid,v)};
+ const key="rounded-2xl bg-green-100 text-4xl font-extrabold text-green-900 min-h-[4.5rem]";
+ return html`<div><${Title} text=${t(stage=="id"?"pick_id":stage=="pin"?"enter_pin":"make_pin")}/>${stage!="id"?html`<p className="text-xl font-bold text-center">👤 ${uid}</p>`:null}${bad?html`<p className="text-xl font-bold text-red-700 text-center">❌ ${t("wrongpin")}</p>`:null}
+  <div className="text-center text-5xl font-extrabold tracking-widest my-4 border-4 border-green-700 rounded-3xl py-3">👤 ${stage=="id"?v.padEnd(4,"•"):"●".repeat(v.length)+"○".repeat(4-v.length)}</div>
+  <div className="grid grid-cols-3 gap-3">${[1,2,3,4,5,6,7,8,9].map(n=>html`<button key=${n} onClick=${()=>add(String(n))} className=${key}>${n}</button>`)}
+   <button onClick=${()=>setV(v.slice(0,-1))} className="rounded-2xl bg-white border-4 border-green-700 text-4xl min-h-[4.5rem]">⌫</button>
+   <button onClick=${()=>add("0")} className=${key}>0</button>
+   <button onClick=${ok} className="rounded-2xl bg-green-700 text-white text-4xl min-h-[4.5rem]">✅</button></div>
+  ${stage=="pin"?html`<div className="mt-4"><button onClick=${()=>setForgot(!forgot)} className="w-full rounded-2xl bg-white border-4 border-green-700 text-green-800 text-xl font-bold">🔑 ${t("forgot")}</button>${forgot?html`<div className="mt-3 flex items-center gap-3"><p className="flex-1 text-lg">${t("forgot_msg")}</p><${Say} text=${t("forgot_msg")}/></div>`:null}</div>`:null}</div>`;
+}
+
+// ---- reminder: pick 1, 4 or 8 hours ----
+function Remind(){
+ const {s,up}=useContext(Ctx), t=useT();
+ const set=h=>{try{Notification.requestPermission()}catch(e){}up(d=>{d.remind=(d.remind&&d.remind.h==h)?null:{h,at:Date.now()+h*36e5}})};
+ return html`<div className="mt-5 text-left"><div className="text-xl font-bold mb-2">🔔 ${t("remind")}</div>
+  <div className="grid grid-cols-3 gap-2">${[1,4,8].map(h=>html`<button key=${h} onClick=${()=>set(h)} className=${"rounded-2xl text-xl font-bold border-4 border-green-700 "+(s.remind&&s.remind.h==h?"bg-green-700 text-white":"bg-white text-green-800")}>🔔 ${h} ${t("hrs")}</button>`)}</div>
+  ${s.remind?html`<p className="mt-2 text-lg">⏰ ${new Date(s.remind.at).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})} · ${t("keepopen")}</p>`:null}</div>`;
+}
+
+// ---- app shell ----
+function App(){
+ const [s,setS]=useState(load);
+ const [scr,setScr]=useState(()=>s.role&&s.wp&&(s.role=="employer"||s.uid)?(s.role=="employer"?"employer":"home"):"setup");
+ const [step,setStep]=useState(0);
+ const [hist,setHist]=useState([]);
+ const [alarm,setAlarm]=useState(false);
+ const up=fn=>setS(p=>{const n=JSON.parse(JSON.stringify(p));fn(n);if(n.uid){n.users=n.users||{};n.users[n.uid]=n.me}try{localStorage.setItem(KEY,JSON.stringify(n))}catch(e){}return n});
+ const go=x=>{try{speechSynthesis.cancel()}catch(e){}setHist(h=>(scr=="setup"||x==home)?[]:[...h,scr]);setScr(x)};
+ const back=()=>{try{speechSynthesis.cancel()}catch(e){}if(scr=="setup"){if(step>0)setStep(step-1);return}const h=hist.slice();const p=h.pop()||home;setHist(h);setScr(p)};
+ useEffect(()=>{const i=setInterval(()=>{if(s.remind&&Date.now()>=s.remind.at){setAlarm(true);say(T[s.lang].remind_now,s.lang);try{new Notification("FairShift",{body:T[s.lang].remind_now})}catch(e){}up(d=>{d.remind=null})}},5000);return()=>clearInterval(i)});
+ useEffect(()=>{document.documentElement.lang=s.lang},[s.lang]);
+ const home=s.role=="employer"?"employer":"home";
+ const view={setup:html`<${Setup} step=${step} setStep=${setStep} go=${go}/>`,home:html`<${Home} go=${go}/>`,attend:html`<${Attend}/>`,salary:html`<${Salary}/>`,danger:html`<${Danger} go=${go}/>`,feedback:html`<${Feedback} go=${go}/>`,employer:html`<${Employer}/>`}[scr];
+ return html`<${Ctx.Provider} value=${{s,up}}><div className="max-w-md mx-auto px-3 pb-10">
+  <div className="grid grid-cols-3 gap-2 pt-3">${[["ta","தமிழ்"],["hi","हिन्दी"],["en","English"]].map(([l,n])=>html`<button key=${l} onClick=${()=>up(d=>{d.lang=l})} className=${"rounded-2xl text-xl font-bold border-4 border-green-700 "+(s.lang==l?"bg-green-700 text-white":"bg-white text-green-800")}>${n}</button>`)}</div>
+  <div className="flex gap-2 mt-2 min-h-[3.5rem]">${((scr=="setup"&&step>0)||(scr!="setup"&&scr!=home))?html`<button onClick=${back} className="flex-1 rounded-2xl bg-green-100 text-green-900 text-xl font-bold">⬅️ ${T[s.lang].back}</button>`:html`<span className="flex-1"></span>`}${(scr!="setup"&&scr!=home)?html`<button aria-label="Home" onClick=${()=>go(home)} className="w-16 rounded-2xl bg-green-100 text-3xl">🏠</button>`:null}${scr!="setup"?html`<button aria-label="Change role" onClick=${()=>{setStep(0);go("setup")}} className="w-16 rounded-2xl bg-green-100 text-3xl">🔄</button>`:null}</div>
+  ${view}
+  ${alarm?html`<div className="fixed inset-0 z-50 bg-green-700 text-white flex flex-col items-center justify-center gap-6 p-6 text-center"><div className="text-9xl">🔔</div><div className="text-3xl font-extrabold">${T[s.lang].remind_now}</div><button onClick=${()=>setAlarm(false)} className="w-full max-w-xs min-h-[6rem] rounded-3xl bg-white text-green-800 text-3xl font-extrabold">✅ ${T[s.lang].ok}</button></div>`:null}
+ </div><//>`;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App}/>`);
+</script>
+</body></html>
